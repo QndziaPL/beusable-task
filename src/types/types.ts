@@ -11,3 +11,8 @@ export interface DistributedGuests {
   [RoomCategory.PREMIUM]: number[];
   [RoomCategory.ECONOMY]: number[];
 }
+
+export interface AvailableRooms {
+  [RoomCategory.PREMIUM]: number;
+  [RoomCategory.ECONOMY]: number;
+}

@@ -1,0 +1,30 @@
+.roomTypeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.roomCategory {
+    font-weight: bold;
+    font-size: 1.5rem;
+    flex: 1;
+}
+
+.numberOfRooms {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    flex: 1;
+}
+
+.roomButtonsContainer {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.roomButtonsContainer > button {
+    min-width: 2rem;
+}
