@@ -1,10 +1,14 @@
 import {
+  calculateRoomsIncome,
+  distributeGuests,
   isPremiumGuest,
   numberOfGuestsExceedingEconomyCapacity,
   numberOfGuestsThatWillHaveUpgrade,
   sortNumbersDescending,
   splitGuestsIntoTwoGroups,
 } from "./helpers";
+
+import guests from "../mocks/guests.json";
 
 describe("helpers test suite", () => {
   describe("verifies guest status based on payment amount", () => {
@@ -32,6 +36,20 @@ describe("helpers test suite", () => {
 
     it("should return 0 when A and B are equal", () => {
       expect(sortNumbersDescending(5, 5)).toBe(0);
+    });
+  });
+
+  describe("tests calculating rooms income", () => {
+    it("should sum 1,2 and 3 and return 6", () => {
+      expect(calculateRoomsIncome([1, 2, 3])).toBe(6);
+    });
+
+    it("should sum 123,234 and 345 and return 6", () => {
+      expect(calculateRoomsIncome([123, 234, 345])).toBe(702);
+    });
+
+    it("should sum 12345,23456 and 34567 and return 6", () => {
+      expect(calculateRoomsIncome([12345, 23456, 34567])).toBe(70368);
     });
   });
 
@@ -75,5 +93,103 @@ describe("helpers test suite", () => {
         0
       );
     });
+  });
+});
+
+describe("distribute guests suite", () => {
+  describe("tests proper distribution of guests between room categories", () => {
+    it("should place 3 premium guests in 3 premium rooms and 5 economy guests in 5 economy rooms", () => {
+      const { premium, economy } = distributeGuests(guests, 3, 5);
+      expect(premium).toEqual([374, 209, 155]);
+      expect(economy).toEqual([99, 45, 23, 22]);
+    });
+
+    it("should place 2 premium guests in 2 premium rooms and 3 economy guests in 3 economy rooms", () => {
+      const { premium, economy } = distributeGuests(guests, 2, 3);
+      expect(premium).toEqual([374, 209]);
+      expect(economy).toEqual([99, 45, 23]);
+    });
+
+    it("should place 6 premium guests in 8 premium rooms and 4 economy guests in 5 economy rooms", () => {
+      const { premium, economy } = distributeGuests(guests, 8, 5);
+      expect(premium).toEqual([374, 209, 155, 115, 101, 100]);
+      expect(economy).toEqual([99, 45, 23, 22]);
+    });
+
+    it("should place 6 premium guest in 10 premium rooms and 4 economy guests in 3 premium (ugprade) and 1 economy room", () => {
+      const { premium, economy } = distributeGuests(guests, 10, 1);
+      expect(premium).toEqual([374, 209, 155, 115, 101, 100, 99, 45, 23]);
+      expect(economy).toEqual([22]);
+    });
+  });
+});
+
+describe("core expected logic tests", () => {
+  it("Test 1", () => {
+    const freePremiumRooms = 3;
+    const freeEconomyRooms = 3;
+
+    const { premium, economy } = distributeGuests(
+      guests,
+      freePremiumRooms,
+      freeEconomyRooms
+    );
+    expect(
+      `Usage Premium: ${premium.length} (EUR ${calculateRoomsIncome(premium)})`
+    ).toBe("Usage Premium: 3 (EUR 738)");
+    expect(
+      `Usage Economy: ${economy.length} (EUR ${calculateRoomsIncome(economy)})`
+    ).toBe("Usage Economy: 3 (EUR 167)");
+  });
+
+  it("Test 2", () => {
+    const freePremiumRooms = 7;
+    const freeEconomyRooms = 5;
+
+    const { premium, economy } = distributeGuests(
+      guests,
+      freePremiumRooms,
+      freeEconomyRooms
+    );
+    expect(
+      `Usage Premium: ${premium.length} (EUR ${calculateRoomsIncome(premium)})`
+    ).toBe("Usage Premium: 6 (EUR 1054)");
+    expect(
+      `Usage Economy: ${economy.length} (EUR ${calculateRoomsIncome(economy)})`
+    ).toBe("Usage Economy: 4 (EUR 189)");
+  });
+
+  it("Test 3", () => {
+    const freePremiumRooms = 2;
+    const freeEconomyRooms = 7;
+
+    const { premium, economy } = distributeGuests(
+      guests,
+      freePremiumRooms,
+      freeEconomyRooms
+    );
+    expect(
+      `Usage Premium: ${premium.length} (EUR ${calculateRoomsIncome(premium)})`
+    ).toBe("Usage Premium: 2 (EUR 583)");
+    expect(
+      `Usage Economy: ${economy.length} (EUR ${calculateRoomsIncome(economy)})`
+    ).toBe("Usage Economy: 4 (EUR 189)");
+  });
+
+  it("Test 4", () => {
+    const freePremiumRooms = 7;
+    const freeEconomyRooms = 1;
+
+    const { premium, economy } = distributeGuests(
+      guests,
+      freePremiumRooms,
+      freeEconomyRooms
+    );
+    expect(
+      `Usage Premium: ${premium.length} (EUR ${calculateRoomsIncome(premium)})`
+    ).toBe("Usage Premium: 7 (EUR 1153)");
+    expect(
+      `Usage Economy: ${economy.length} (EUR ${calculateRoomsIncome(economy)})`
+    ).toBe("Usage Economy: 1 (EUR 45)");
   });
 });

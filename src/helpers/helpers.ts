@@ -44,11 +44,29 @@ export const distributeGuests: DistributeGuestsFunctionType = (
     }
   });
 
-  if (
-    premiumRoomsLeft &&
-    numberOfGuestsExceedingEconomyCapacity(economy.length, economyRoomsLeft)
-  ) {
-    // todo
+  const guestsExceedingEconomyCapacity = numberOfGuestsExceedingEconomyCapacity(
+    economy.length,
+    economyRoomsLeft
+  );
+
+  if (premiumRoomsLeft && guestsExceedingEconomyCapacity) {
+    let guestsToUpgrade = numberOfGuestsThatWillHaveUpgrade(
+      guestsExceedingEconomyCapacity,
+      premiumRoomsLeft
+    );
+
+    economy.forEach((guest) => {
+      if (guestsToUpgrade > 0) {
+        distributedGuests[RoomCategory.PREMIUM].push(guest);
+        premiumRoomsLeft--;
+        guestsToUpgrade--;
+      } else {
+        if (economyRoomsLeft) {
+          distributedGuests[RoomCategory.ECONOMY].push(guest);
+          economyRoomsLeft--;
+        }
+      }
+    });
   } else {
     economy.forEach((guest) => {
       if (economyRoomsLeft) {
@@ -95,3 +113,6 @@ export const numberOfGuestsThatWillHaveUpgrade = (
     numberOfAvailablePremiumRooms,
     numberOfGuestsExceedingEconomyCapacity
   );
+
+export const calculateRoomsIncome = (guests: Guest[]): number =>
+  guests.reduce((acc, curr) => acc + curr, 0);
