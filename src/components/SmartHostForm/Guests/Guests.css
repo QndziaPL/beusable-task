@@ -3,14 +3,12 @@
     width: 100%;
     gap: var(--guest-card-gap);
     flex-wrap: wrap;
-
 }
 
 .guestCard {
     display: flex;
     min-width: var(--guest-card-dimension);
     height: var(--guest-card-dimension);
-    border-radius: 5px;
     border: 1px solid black;
     justify-content: center;
     align-items: center;
@@ -18,30 +16,6 @@
     transition-duration: 0.1s;
 }
 
-.guestCard.reset {
-    background-color: var(--light-gray);
-}
-
 .guest:hover {
     background-color: var(--remove-guest-background);
-}
-
-.addGuest {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 1.5rem;
-    background-color: var(--add-guest-background);
-}
-
-.addGuest > button, .addGuest > input {
-    font-size: 1rem;
-}
-
-.addGuest > input {
-    width: 4rem;
-}
-
-.addGuest.expanded {
-    width: calc(2 * var(--guest-card-dimension) + var(--guest-card-gap));
 }

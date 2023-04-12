@@ -3,12 +3,22 @@ import "./Section.css";
 
 export interface SectionProps {
   title: string;
+  additionalContent?: ReactNode;
   children: ReactNode;
 }
-export const Section: FC<SectionProps> = ({ children, title }) => {
+export const Section: FC<SectionProps> = ({
+  children,
+  title,
+  additionalContent,
+}) => {
   return (
     <section>
-      <h4>{title}</h4>
+      <div className="sectionHeader">
+        <div className="title">{title}</div>
+        {additionalContent && (
+          <div className="additionalHeaderContent">{additionalContent}</div>
+        )}
+      </div>
       <hr />
       {children}
     </section>

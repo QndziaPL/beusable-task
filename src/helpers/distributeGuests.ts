@@ -116,3 +116,11 @@ export const numberOfGuestsThatWillHaveUpgrade = (
 
 export const calculateRoomsIncome = (guests: Guest[]): number =>
   guests.reduce((acc, curr) => acc + curr, 0);
+
+export const createFormattedStringSummaryForRoomCategory = (
+  categoryName: string,
+  guests: Guest[]
+): string =>
+  `Usage ${categoryName}: ${guests.length} (EUR ${calculateRoomsIncome(
+    guests
+  )})`;

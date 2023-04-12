@@ -1,18 +1,12 @@
 import { type Dispatch, type FC, type SetStateAction } from "react";
 import { type Guest } from "../../../types/types";
 import "./Guests.css";
-import { GuestInput } from "./GuestInput/GuestInput";
 
 export interface GuestsProps {
   guests: Guest[];
   setGuests: Dispatch<SetStateAction<Guest[]>>;
-  resetToInitialGuests: () => void;
 }
-export const Guests: FC<GuestsProps> = ({
-  guests,
-  setGuests,
-  resetToInitialGuests,
-}) => {
+export const Guests: FC<GuestsProps> = ({ guests, setGuests }) => {
   const onRemoveGuestClick = (index: number): void => {
     setGuests((prev) => {
       const copy = [...prev];
@@ -34,14 +28,6 @@ export const Guests: FC<GuestsProps> = ({
           {guest}&nbsp;€
         </div>
       ))}
-      <GuestInput
-        addNewGuest={(guest) => {
-          setGuests((prev) => [...prev, guest]);
-        }}
-      />
-      <div className="guestCard reset" onClick={resetToInitialGuests}>
-        reset
-      </div>
     </div>
   );
 };

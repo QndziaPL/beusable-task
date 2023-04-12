@@ -1,5 +1,6 @@
 import {
   calculateRoomsIncome,
+  createFormattedStringSummaryForRoomCategory,
   distributeGuests,
   isPremiumGuest,
   numberOfGuestsExceedingEconomyCapacity,
@@ -135,10 +136,10 @@ describe("core expected logic tests", () => {
       freeEconomyRooms
     );
     expect(
-      `Usage Premium: ${premium.length} (EUR ${calculateRoomsIncome(premium)})`
+      createFormattedStringSummaryForRoomCategory("Premium", premium)
     ).toBe("Usage Premium: 3 (EUR 738)");
     expect(
-      `Usage Economy: ${economy.length} (EUR ${calculateRoomsIncome(economy)})`
+      createFormattedStringSummaryForRoomCategory("Economy", economy)
     ).toBe("Usage Economy: 3 (EUR 167)");
   });
 
@@ -152,10 +153,10 @@ describe("core expected logic tests", () => {
       freeEconomyRooms
     );
     expect(
-      `Usage Premium: ${premium.length} (EUR ${calculateRoomsIncome(premium)})`
+      createFormattedStringSummaryForRoomCategory("Premium", premium)
     ).toBe("Usage Premium: 6 (EUR 1054)");
     expect(
-      `Usage Economy: ${economy.length} (EUR ${calculateRoomsIncome(economy)})`
+      createFormattedStringSummaryForRoomCategory("Economy", economy)
     ).toBe("Usage Economy: 4 (EUR 189)");
   });
 
@@ -169,10 +170,10 @@ describe("core expected logic tests", () => {
       freeEconomyRooms
     );
     expect(
-      `Usage Premium: ${premium.length} (EUR ${calculateRoomsIncome(premium)})`
+      createFormattedStringSummaryForRoomCategory("Premium", premium)
     ).toBe("Usage Premium: 2 (EUR 583)");
     expect(
-      `Usage Economy: ${economy.length} (EUR ${calculateRoomsIncome(economy)})`
+      createFormattedStringSummaryForRoomCategory("Economy", economy)
     ).toBe("Usage Economy: 4 (EUR 189)");
   });
 
@@ -186,10 +187,10 @@ describe("core expected logic tests", () => {
       freeEconomyRooms
     );
     expect(
-      `Usage Premium: ${premium.length} (EUR ${calculateRoomsIncome(premium)})`
+      createFormattedStringSummaryForRoomCategory("Premium", premium)
     ).toBe("Usage Premium: 7 (EUR 1153)");
     expect(
-      `Usage Economy: ${economy.length} (EUR ${calculateRoomsIncome(economy)})`
+      createFormattedStringSummaryForRoomCategory("Economy", economy)
     ).toBe("Usage Economy: 1 (EUR 45)");
   });
 });
