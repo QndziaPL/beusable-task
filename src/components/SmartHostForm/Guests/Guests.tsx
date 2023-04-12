@@ -1,5 +1,6 @@
 import { type Dispatch, type FC, type SetStateAction } from "react";
 
+import { isPremiumGuest } from "../../../helpers/distributeGuests";
 import { type Guest } from "../../../types/types";
 
 import "./Guests.css";
@@ -27,7 +28,13 @@ export const Guests: FC<GuestsProps> = ({ guests, setGuests }) => {
           key={i}
           className="guest"
         >
-          {guest}&nbsp;€
+          <span>{guest}&nbsp;€</span>
+          {isPremiumGuest(guest) && (
+            <>
+              <div className="guestCornerMarkBackground"></div>
+              <div className="guestCornerMarkSign">P</div>
+            </>
+          )}
         </div>
       ))}
     </div>
