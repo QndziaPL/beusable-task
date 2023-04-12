@@ -4,15 +4,6 @@ import {
   RoomCategory,
 } from "../types/types";
 
-export const isPremiumGuest = (willingToPay: Guest): boolean =>
-  willingToPay >= 100;
-
-export const sortNumbersDescending = (a: number, b: number): 1 | -1 | 0 => {
-  if (a > b) return -1;
-  if (a < b) return 1;
-  return 0;
-};
-
 export type DistributeGuestsFunctionType = (
   guests: Guest[],
   premiumRooms: number,
@@ -99,6 +90,15 @@ export const splitGuestsIntoTwoGroups: SplitGuestsIntoTwoGroupsFunctionType = (
       [RoomCategory.ECONOMY]: [],
     }
   );
+
+export const isPremiumGuest = (willingToPay: Guest): boolean =>
+  willingToPay >= 100;
+
+export const sortNumbersDescending = (a: number, b: number): 1 | -1 | 0 => {
+  if (a > b) return -1;
+  if (a < b) return 1;
+  return 0;
+};
 
 export const numberOfGuestsExceedingEconomyCapacity = (
   numberOfGuests: number,

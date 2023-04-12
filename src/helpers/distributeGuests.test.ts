@@ -6,7 +6,7 @@ import {
   numberOfGuestsThatWillHaveUpgrade,
   sortNumbersDescending,
   splitGuestsIntoTwoGroups,
-} from "./helpers";
+} from "./distributeGuests";
 
 import guests from "../mocks/guests.json";
 

@@ -7,4 +7,22 @@ body {
   font-family: Poppins, sans-serif;
 }
 
+button {
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 6px;
+}
+
+input {
+  text-align: center;
+}
+
+:root {
+  --guest-card-gap: .3rem;
+  --guest-card-dimension: 6rem;
+  --add-guest-background: #00b1ff;
+  --remove-guest-background: #ff7373;
+}
+
 
