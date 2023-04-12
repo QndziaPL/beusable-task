@@ -19,7 +19,7 @@
 }
 
 .guestCard.reset {
-    background-color: #efefef;
+    background-color: var(--light-gray);
 }
 
 .guest:hover {

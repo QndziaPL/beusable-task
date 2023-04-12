@@ -39,6 +39,7 @@ export const GuestInput: FC<GuestInputProps> = ({ addNewGuest }) => {
             close
           </button>
           <input
+            placeholder="amount"
             role="textbox"
             maxLength={3}
             type="text"

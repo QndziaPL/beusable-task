@@ -12,6 +12,7 @@ button {
   border-radius: 3px;
   border: 1px solid black;
   padding: 6px;
+  background-color: var(--light-gray);
 }
 
 input {
@@ -19,10 +20,13 @@ input {
 }
 
 :root {
+  --accent-color: #00b1ff;
+  --light-gray: #d1d1d1;
+  --add-guest-background: var(--accent-color);
+  --remove-guest-background: #ff7373;
   --guest-card-gap: .3rem;
   --guest-card-dimension: 6rem;
-  --add-guest-background: #00b1ff;
-  --remove-guest-background: #ff7373;
+
 }
 
 
