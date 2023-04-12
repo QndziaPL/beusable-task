@@ -26,27 +26,37 @@ export const distributeGuests: DistributeGuestsFunctionType = (
   // based on what i've seen on test result expectations this logic depends on paymentWill, not the order of potential bookings
   const guestsSortedByPaymentWill = [...guests].sort(sortNumbersDescending);
 
-  const premiumRoomsLeft = premiumRooms;
-  const economyRoomsLeft = economyRooms;
+  let premiumRoomsLeft = premiumRooms;
+  let economyRoomsLeft = economyRooms;
   const distributedGuests: DistributedGuests = {
     [RoomCategory.PREMIUM]: [],
     [RoomCategory.ECONOMY]: [],
   };
 
-  const { economy, premium } = splitGuestsIntoTwoGroups(
+  const { premium, economy } = splitGuestsIntoTwoGroups(
     guestsSortedByPaymentWill
   );
 
-  // premium first phase
-  // const premiumGuests = guestsSortedByPaymentWill.filter(isPremiumCustomer);
-  // premiumGuests.forEach((guest) => {
-  //   if (premiumRoomsLeft) {
-  //     distributedCustomers[RoomCategory.PREMIUM].push(guest);
-  //     premiumRoomsLeft--;
-  //   }
-  // });
+  premium.forEach((guest) => {
+    if (premiumRoomsLeft) {
+      distributedGuests[RoomCategory.PREMIUM].push(guest);
+      premiumRoomsLeft--;
+    }
+  });
 
-  // const economyGuests = g;
+  if (
+    premiumRoomsLeft &&
+    numberOfGuestsExceedingEconomyCapacity(economy.length, economyRoomsLeft)
+  ) {
+    // todo
+  } else {
+    economy.forEach((guest) => {
+      if (economyRoomsLeft) {
+        distributedGuests[RoomCategory.ECONOMY].push(guest);
+        economyRoomsLeft--;
+      }
+    });
+  }
 
   return distributedGuests;
 };
@@ -70,4 +80,18 @@ export const splitGuestsIntoTwoGroups: SplitGuestsIntoTwoGroupsFunctionType = (
       [RoomCategory.PREMIUM]: [],
       [RoomCategory.ECONOMY]: [],
     }
+  );
+
+export const numberOfGuestsExceedingEconomyCapacity = (
+  numberOfGuests: number,
+  numberOfEconomyRooms: number
+): number => numberOfGuests - numberOfEconomyRooms;
+
+export const numberOfGuestsThatWillHaveUpgrade = (
+  numberOfGuestsExceedingEconomyCapacity: number,
+  numberOfAvailablePremiumRooms: number
+): number =>
+  Math.min(
+    numberOfAvailablePremiumRooms,
+    numberOfGuestsExceedingEconomyCapacity
   );

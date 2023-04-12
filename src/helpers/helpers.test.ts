@@ -1,5 +1,7 @@
 import {
   isPremiumGuest,
+  numberOfGuestsExceedingEconomyCapacity,
+  numberOfGuestsThatWillHaveUpgrade,
   sortNumbersDescending,
   splitGuestsIntoTwoGroups,
 } from "./helpers";
@@ -53,6 +55,25 @@ describe("helpers test suite", () => {
       const { premium, economy } = splitGuestsIntoTwoGroups(guests);
       expect(premium).toHaveLength(0);
       expect(economy).toHaveLength(2);
+    });
+  });
+
+  describe("tests economy guest upgrade process", () => {
+    it("tests number of guests that will have upgrade based on available rooms and number of guests with potential upgrade", () => {
+      expect(numberOfGuestsThatWillHaveUpgrade(2, 1)).toBe(1);
+      expect(numberOfGuestsThatWillHaveUpgrade(2, 2)).toBe(2);
+      expect(numberOfGuestsThatWillHaveUpgrade(1, 3)).toBe(1);
+      expect(numberOfGuestsThatWillHaveUpgrade(1, 3)).toBe(1);
+    });
+
+    it("tests if there is too few economy rooms for potential economy guests", () => {
+      expect(numberOfGuestsExceedingEconomyCapacity(5, 4)).toBeGreaterThan(0);
+      expect(numberOfGuestsExceedingEconomyCapacity(3, 5)).not.toBeGreaterThan(
+        0
+      );
+      expect(numberOfGuestsExceedingEconomyCapacity(2, 2)).not.toBeGreaterThan(
+        0
+      );
     });
   });
 });
