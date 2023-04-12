@@ -4,7 +4,9 @@ import {
   type SyntheticEvent,
   useState,
 } from "react";
+
 import { type Guest } from "../../../../types/types";
+
 import "./ManageGuestsButtons.css";
 
 export interface ManageGuestsButtonsProps {

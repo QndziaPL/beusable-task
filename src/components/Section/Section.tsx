@@ -1,4 +1,5 @@
 import { type FC, type ReactNode } from "react";
+
 import "./Section.css";
 
 export interface SectionProps {
@@ -15,9 +16,7 @@ export const Section: FC<SectionProps> = ({
     <section>
       <div className="sectionHeader">
         <div className="title">{title}</div>
-        {additionalContent && (
-          <div className="additionalHeaderContent">{additionalContent}</div>
-        )}
+        {additionalContent && additionalContent}
       </div>
       <hr />
       {children}

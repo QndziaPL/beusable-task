@@ -1,5 +1,5 @@
 import React, { type FC } from "react";
-import "./App.css";
+
 import { Header } from "../Header/Header";
 import { SmartHostForm } from "../SmartHostForm/SmartHostForm";
 

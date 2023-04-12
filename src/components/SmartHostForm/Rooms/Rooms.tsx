@@ -1,5 +1,7 @@
 import { type Dispatch, type FC, type SetStateAction } from "react";
+
 import { type AvailableRooms, RoomCategory } from "../../../types/types";
+
 import { SingleRoomCategory } from "./SingleRoomCategory";
 
 export interface RoomsProps {

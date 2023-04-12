@@ -1,5 +1,7 @@
 import { type Dispatch, type FC, type SetStateAction } from "react";
+
 import { type Guest } from "../../../types/types";
+
 import "./Guests.css";
 
 export interface GuestsProps {
@@ -23,7 +25,7 @@ export const Guests: FC<GuestsProps> = ({ guests, setGuests }) => {
             onRemoveGuestClick(i);
           }}
           key={i}
-          className="guestCard guest"
+          className="guest"
         >
           {guest}&nbsp;€
         </div>

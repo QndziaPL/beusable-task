@@ -1,15 +1,17 @@
 import { type FC, useMemo } from "react";
-import {
-  type AvailableRooms,
-  type Guest,
-  RoomCategory,
-} from "../../../types/types";
-import "./IncomeResults.css";
+
 import {
   calculateRoomsIncome,
   createFormattedStringSummaryForRoomCategory,
   distributeGuests,
 } from "../../../helpers/distributeGuests";
+import {
+  type AvailableRooms,
+  type Guest,
+  RoomCategory,
+} from "../../../types/types";
+
+import "./IncomeResults.css";
 
 export interface IncomeResultsProps {
   guests: Guest[];

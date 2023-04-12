@@ -1,3 +1,5 @@
+import guests from "../mocks/guests.json";
+
 import {
   calculateRoomsIncome,
   createFormattedStringSummaryForRoomCategory,
@@ -8,8 +10,6 @@ import {
   sortNumbersDescending,
   splitGuestsIntoTwoGroups,
 } from "./distributeGuests";
-
-import guests from "../mocks/guests.json";
 
 describe("helpers test suite", () => {
   describe("verifies guest status based on payment amount", () => {

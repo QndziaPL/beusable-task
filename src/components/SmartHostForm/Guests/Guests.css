@@ -5,7 +5,7 @@
     flex-wrap: wrap;
 }
 
-.guestCard {
+.guest {
     display: flex;
     min-width: var(--guest-card-dimension);
     height: var(--guest-card-dimension);

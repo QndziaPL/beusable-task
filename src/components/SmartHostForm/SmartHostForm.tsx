@@ -1,12 +1,15 @@
 import React, { type FC, useState } from "react";
-import { Guests } from "./Guests/Guests";
-import { type AvailableRooms, type Guest } from "../../types/types";
+
 import mockGuests from "../../mocks/guests.json";
-import "./SmartHostForm.css";
+import { type AvailableRooms, type Guest } from "../../types/types";
 import { Section } from "../Section/Section";
-import { Rooms } from "./Rooms/Rooms";
-import { IncomeResults } from "./IncomeResults/IncomeResults";
+
+import { Guests } from "./Guests/Guests";
 import { ManageGuestsButtons } from "./Guests/ManageGuestsButtons/ManageGuestsButtons";
+import { IncomeResults } from "./IncomeResults/IncomeResults";
+import { Rooms } from "./Rooms/Rooms";
+
+import "./SmartHostForm.css";
 
 export const SmartHostForm: FC = () => {
   const [guests, setGuests] = useState<Guest[]>(mockGuests);
