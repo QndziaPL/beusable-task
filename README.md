@@ -1,3 +1,7 @@
+# Beusable recruitment task
+
+Preview is deployed [here](https://beusable-smart-host.netlify.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
