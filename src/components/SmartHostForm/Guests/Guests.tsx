@@ -1,7 +1,8 @@
 import { type Dispatch, type FC, type SetStateAction } from "react";
 
-import { isPremiumGuest } from "../../../helpers/distributeGuests";
 import { type Guest } from "../../../types/types";
+
+import { SingleGuest } from "./Guest/SingleGuest";
 
 import "./Guests.css";
 
@@ -10,7 +11,7 @@ export interface GuestsProps {
   setGuests: Dispatch<SetStateAction<Guest[]>>;
 }
 export const Guests: FC<GuestsProps> = ({ guests, setGuests }) => {
-  const onRemoveGuestClick = (index: number): void => {
+  const removeGuest = (index: number): void => {
     setGuests((prev) => {
       const copy = [...prev];
       copy.splice(index, 1);
@@ -21,21 +22,13 @@ export const Guests: FC<GuestsProps> = ({ guests, setGuests }) => {
   return (
     <div className="guests">
       {guests.map((guest, i) => (
-        <div
-          onClick={() => {
-            onRemoveGuestClick(i);
-          }}
+        <SingleGuest
           key={i}
-          className="guest"
-        >
-          <span>{guest}&nbsp;€</span>
-          {isPremiumGuest(guest) && (
-            <>
-              <div className="guestCornerMarkBackground"></div>
-              <div className="guestCornerMarkSign">P</div>
-            </>
-          )}
-        </div>
+          guest={guest}
+          removeGuest={() => {
+            removeGuest(i);
+          }}
+        />
       ))}
     </div>
   );
