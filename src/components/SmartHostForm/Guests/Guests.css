@@ -3,6 +3,7 @@
     width: 100%;
     gap: var(--guest-card-gap);
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .guest {
