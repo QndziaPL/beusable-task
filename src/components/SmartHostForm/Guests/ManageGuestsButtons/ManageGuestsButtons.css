@@ -4,13 +4,23 @@
 
 .manageGuestsButtons > form {
     display: inline;
+    position: relative;
 }
 
 
 .manageGuestsButtons > form > input {
     width: 5rem;
-    padding: 0.0625rem;
+    flex: 1;
     font-size: 1rem;
+    border-radius: 0;
+    border-style: hidden;
+    background-color: #efefef;
+    height: 100%;
+}
+
+.manageGuestsButtons > form > input:focus-visible {
+    border-radius: 0;
+    outline: 0;
 }
 
 .resetButton {
